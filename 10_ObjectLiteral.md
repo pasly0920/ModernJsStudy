@@ -10,8 +10,8 @@
 
 ```js
 var person = {
-  name: 'Lee', 
-  age: 22 
+  name: 'Lee',
+  age: 22
 };
 ```
 
@@ -36,7 +36,7 @@ console.log(person); // {firstName: "Ung-me", last-name: "Lee"}
 
 (1) 식별자는 특수문자를 제외한 문자, 숫자, 언더스코어(_), 달러 기호를 포함할 수 있다.
 (2) 식별자는 숫자로 시작할 수 없다.
-(3) 예약어는 식별자로 사용될 수 없다. 
+(3) 예약어는 식별자로 사용될 수 없다.
 
 3. 프로퍼티 키 생성
 
@@ -51,7 +51,7 @@ console.log(obj); // {hello: "world"}
 
 ## 10.4 메서드
 
-메서드: 프로퍼티 값으로 사용된 함수(일반 함수와 구분하기 위해)
+메서드: 프로퍼티 값으로 사용된 함수
 
 ```js
 var circle = {
@@ -79,7 +79,7 @@ console.log(circle.getDiameter()); //10
 var person = {
   name: 'Lee'
 };
-console.log(person.name); // Lee 
+console.log(person.name); // Lee
 console.log(person['name']); // Lee
 ```
 
@@ -157,6 +157,7 @@ var person = {
     console.log(`Hello! My name is ${this.name}.`);
   }
 };
+
 console.log(typeof person);
 console.log(person); // {name: "Lee", sayHello: f}
 ```
@@ -172,9 +173,9 @@ ES6에서는 프로퍼티 값으로 변수를 사용하는 경우 변수 이름�
 ```js
 let x = 1, y = 2;
 
-const obj = {x, y}; //프로퍼티 축약 표현
+const obj = {x, y};
 
-console.log(obj); // {x:1, y: 2}
+console.log(obj);
 ```
 
 ### 10.9.2 계산된 프로퍼티 이름
