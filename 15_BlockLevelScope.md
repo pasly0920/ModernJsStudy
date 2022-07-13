@@ -61,7 +61,8 @@ let foo = 1; // 전역 변수
 
 변수 호이스팅이 발생하지 않는다면 위 예제는 전역 변수 foo의 값을 출력해야 한다. 하지만 let 키워드로 선언한 변수도 여전히 호이스팅이 발생하기 때문에 **참조 에러**가 발생한다.
 
-자바스크립트는 ES6에서 도입된 let, const를 포함해서 모든 선언(var, let, const, function, function*,class 등)을 호이스팅한다.<br>
+자바스크립트는 ES6에서 도입된 let, const를 포함해서 모든 선언(var, let, const, function, function*,class 등)을 호이스팅한다.
+
 단, ES6에서 도입된 let,const,class를 사용한 선언문은 호이스팅이 발생하지 않는 것처럼 동작한다.
 
 ## 전역 객체와 let
