@@ -2,6 +2,8 @@
 
 ## 4.1 변수란
 
+하나의 값을 지정 하기 위해 확보한 메모리 공간 자체, 혹은 그 메모리 공간을 식별 하기 위해 붙여진 이름을 말한다. 즉, 값의 위치를 가리키는 상징적인 이름이다.
+
 하나의 값을 지정 하기 위해 확보한 메모리 공간 자체, 혹은 그 메모리 공간을 식별 하기 위해 붙여진 이름을 말한다. 즉, **값의 위치를 가리키는 상징적인 이름**이다.
 
 ```javascript
@@ -13,6 +15,7 @@
   var user = { id: 1, name: 'Lee'};
   var users = [
       { id: 1, name: 'Lee'},
+      { id: 2, name: 'Kim'}      
       { id: 2, name: 'Kim'}    
   ];
 ```
@@ -23,11 +26,15 @@
 
 변수에 값을 저장하는 것을 할당(assignment)이라 하고, 그 저장된 값을 읽어들이는 것을 참조(reference)라고 한다.
 
---------
+-------
 
 ## 4.2 식별자
 
 변수 이름을 식별자(identifier)라고도 한다. 식별자는 메모리 공간에 저장되어 있는 어떤 값을 구별해서 식별해 낼 수 있어야 한다.
+
+이를 위해 식별자는 값이 저장되어 있는 메모리 주소와 매핑 관례를 맺으며, 이 매핑 정보도 메모리에 저장되어야 한다.
+
+즉, 식별자는 값이 아니라 메모리 주소를 기억하고 있다. 메모리 주소를 통해 메모리 공간에 저장된 값에 접근할 수 있다는 의미다.
 
 이를 위해 식별자는 값이 저장되어 있는 메모리 주소와 매핑 관계를 맺으며, 이 매핑 정보도 메모리에 저장되어야 한다.
 
@@ -43,13 +50,15 @@
 
 이 실행 컨텍스트에 변수명과 변수 값이 key/value 형식인 객체로 등록 되는데, 자세한 내용은 13장, 23장에서 살펴볼 것이다.
 
---------
+-------
 
 ## 4.3 변수 선언
 
 변수 선언이란 값을 저장하기 위핸 메모리 공간을 확보(allocate)하고 확보된 메모리 공간의 주소를 연결하는 것이다.
 
 변수 선언에 의해 확보된 메모리 공간은 해제(release)되기 전 까지는 보호될 수 있다.
+
+변수를 선언할 때는 var, let, const 키워드를 사용한다.
 
 변수를 선언할 때는 var, let, const 키워드를 사용한다.
 
@@ -69,7 +78,7 @@ var score; //변수 선언
 
 만약 선언하지 않은 식별자에 접근하면 ReferenceError(참조 에러)가 발생한다.
 
---------
+-------
 
 ## 4.4 변수 선언의 실행 시점과 변수 호이스팅
 
@@ -89,7 +98,7 @@ var score; // 변수 선언문
 
 이처럼 변수 선언문이 먼저 동작하는 자바스크립트 고유 특징을 변수 호이스팅(variable hoisting)이라고 한다.
 
---------
+-------
 
 ## 4.5 값의 할당
 
@@ -120,7 +129,7 @@ console.log(score); // 80
 
 (1)과 (2)의 순서가 바뀌어도 결과는 같다.
 
---------
+-------
 
 ## 4.6 값의 재할당
 
@@ -137,7 +146,7 @@ var로 선언한 변수는 값을 재할당 할 수 있다. 만약 값을 재할
 
 이전 값은 가비지 콜렉터(garbage collector)에 의해 메모리에서 자동 해제되며, 언제 해제될지는 예측할 수 없다.
 
---------
+-------
 
 ## 4.7 식별자 네이밍 규칙
 
@@ -145,16 +154,15 @@ var로 선언한 변수는 값을 재할당 할 수 있다. 만약 값을 재할
 * 단, 식별자는 특수문자를 제외한 문자, 언더스코어(_), 달러 기호($)로 시작해야 한다. 숫자로 시작하는 것은 허용하지 않는다.
 * 예약어는 식별자로 사용할 수 없다.
 
-|     |     |     |     |     |     |
-|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
-|await     |break     |case     |catch     |class     |const     |
-|continue     |debugger     |default     |delete     |do     |else     |
-|enum     |export     |extends     |false     |finally     |for     |
-|function     |if     |implements     |import     |in     |instanceof     |
-|interface     |let     |new     |null     |private     |package     |
-|protected     |public     |return     |super     |static     |switch     |
-|this     |throw     |true     |try     |typeof     |var     |
-|void     |while     |with     |yield     |     |     |
+| await     | break    | case       | catch  | class   | const      |
+|-----------|----------|------------|--------|---------|------------|
+| continue  | debugger | default    | delete | do      | else       |
+| enum      | export   | extends    | false  | finally | for        |
+| function  | if       | implements | import | in      | instanceof |
+| interface | let      | new        | null   | package | private    |
+| proteted  | public   | return     | super  | static  | switch     |
+| this      | throw    | true       | try    | typeof  | var        |
+| void      | while    | with       | yield  |         |            |
 
 변수는 쉼표로 구분해 하나의 문에서 여러 개를 한 번에 선언할 수 있지만, 가독성 문제로 권장되지 않는다.
 
