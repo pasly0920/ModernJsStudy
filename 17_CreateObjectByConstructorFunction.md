@@ -101,6 +101,7 @@ const circle3 = Circle(15);  // new 연사자와 함께 호출하지 않아 일�
 conselo.log(circle3); // undefined, 일반 함수로서 호출된 Circle은 반환문이 없으므로 암묵적으로 undefined를 반환한다.
 
 console.log(radius);  // 15, 일반 함수로서 호출된 Circle 내의 this는 전역 객체를 가리킨다.
+```
 
 ### 17.2.3 생성자 함수의 인스턴스 생성 과정
 
@@ -108,7 +109,7 @@ console.log(radius);  // 15, 일반 함수로서 호출된 Circle 내의 this는
 
 ```javascript
 function Circle(radius) {  // 생성자 함수
-    // 인스턴스 초기화하는
+    // 인스턴스 초기화
     this.radius = radius;
     this.getDiameter = function() {
         return 2 * this.radius;
@@ -120,19 +121,16 @@ const circle1 = new Circle(5); // 반지름이 5인 Circle 객체를 생성
 
 this에 프로퍼티를 추가하고 필요에 따라 전달된 인수를 프로퍼티의 초기값으로서 할당하여 인스턴스를 초기화한다. JS는 new 연산자와 함께 생성자 함수를 호출하면 암묵적인 처리를 통해 인스턴스를 생성하고 반환한다.
 
-1. 인스턴스 생성과 this 바인딩
-암묵적으로 빈 객체가 생성되고 이것이 바로 인스턴스고 this에 바인딩된다. 이 과정은 런타임 이전에 실행된다.  
+1. 인스턴스 생성과 this 바인딩 : 암묵적으로 빈 객체가 생성되고 이것이 바로 인스턴스고 this에 바인딩된다. 이 과정은 런타임 이전에 실행된다.  
 *바인딩 : 식별자와 값을 연결하는 과정을 의미한다. this 바인딩은 this와 this를 가리킬 객체를 바인딩하는 것이다.
 
-2. 인스턴스 초기화
-런타임 과정에서 this에 바인딩되어 있는 인스턴스를 초기화한다. this에 바인딩되어 있는 인스턴스에 프로퍼티나 메서드를 추가하고 생성자 함수가 인수로 전달받은 초기값을 인스턴스 프로퍼티에 할당하여 초기화하거나 고정값을 할당한다.
+2. 인스턴스 초기화 : 런타임 과정에서 this에 바인딩되어 있는 인스턴스를 초기화한다. this에 바인딩되어 있는 인스턴스에 프로퍼티나 메서드를 추가하고 생성자 함수가 인수로 전달받은 초기값을 인스턴스 프로퍼티에 할당하여 초기화하거나 고정값을 할당한다.
 
-3. 인스턴스 반환
-생성자 함수 내부의 모든 처리가 끝나면 완성된 인스턴스가 바인딩된 this가 암묵적으로 반환된다.
+3. 인스턴스 반환 : 생성자 함수 내부의 모든 처리가 끝나면 완성된 인스턴스가 바인딩된 this가 암묵적으로 반환된다.
 
 ```javascript
 function Circle(radius) {
-    // 1. 암묵저그올 빈 객체가 생성되고 this에 바인딩된다.
+    // 1. 암묵적으로 빈 객체가 생성되고 this에 바인딩된다.
 
     // 2. this에 바인딩되어 있는 인스턴스를 초기화한다.
     this.radius = radius;
@@ -175,7 +173,7 @@ conselo.log(circle);  // Circle {radius: 1, getDiameter: f}
 - constructor : 함수 선언문, 함수 표현식, 클래스(클래스도 함수)
 - non-constructor : 메서드, 화살표 함수
 
-함수를 프로퍼티 값으로 사용하면 일반적으로 메서드로 통칭한다. 하지만 ES6의 메서드 축약 표만 메서드로 인정한다. 함수가 어디에 할당되어 있는지에 따라 메서드인지를 판단하는 것이 아니라 함수 정의 방식에 따라 constructor와 non-constructor를 구분한다.
+함수를 프로퍼티 값으로 사용하면 일반적으로 메서드로 통칭한다. 하지만 ES6의 메서드 축약 표현만 메서드로 인정한다. 함수가 어디에 할당되어 있는지에 따라 메서드인지를 판단하는 것이 아니라 함수 정의 방식에 따라 constructor와 non-constructor를 구분한다.
 
 함수를 생성자 함수로서 호출하면 내부 메서드 [[Construct]]가 호출된다. non-constructor인 함수 객체는 내부 메서드 [[Construct]]를 갖지 않는다. 따라서 non-constructor인 함수 객체를 생성자 함수로서 호출하면 에러가 발생한다.
 
@@ -206,6 +204,10 @@ new obj.x();  // TypeError: obj.x is not a constructor
 new 연산자와 함께 함수를 호출하면 해당 함수는 생성자 함수로 동작한다. 즉 함수 객체의 내부 메서드 [[Call]]이 호출되는 것이 아니라 [[Construct]]가 호출된다. 이때 new 연산자와 함께 호출하는 함수는 non-constructor가 아닌 constructordldjdi gksek.
 
 ```javascript
+function add(x, y) {
+    return x+y;
+}
+
 let inst = new add();  // 생성자 함수로서 정의하지 않은 일반 함수를 new 연산자와 함께 호출
 
 console.log(inst);  //{}, 함수가 객체를 반환하지 않았으므로 반환문이 무시된다. 따라서 빈 객체가 생성되어 반환한다.
@@ -251,7 +253,7 @@ new 연산자와 함께 생성자 함수로서 호출되면 함수 내부의 new
 function Circle(radius) {
     //이 함수가 new 연산자와 함께 호출되지 않는다면 new.target은 undefined이다.
     if (!new.target){
-        // new 연산자와 함께 생서자 함수를 재귀 호출하여 생성된 인스턴스를 반환하다.
+        // new 연산자와 함께 생tjd자 함수를 재귀 호출하여 생성된 인스턴스를 반환하다.
         return new Circle(radius);
     }
 
@@ -268,7 +270,7 @@ console.log(circle.getDiameter());
 대부분의 빌트인 생성자 함수 (Object, String, Number, Boolean, Function, Array, Date, RegExp,
 Promise 등)는 new 연산자와 함께 호출되었는지를 확인한 후 적절한 값을 반환한다.
 
-Object와 Fuction 생성자 함수는 new 연산자 없이 호출해도 new 연산자와 함께 호출했을 때와 동일하게 동작하낟.
+Object와 Fuction 생성자 함수는 new 연산자 없이 호출해도 new 연산자와 함께 호출했을 때와 동일하게 동작한다.
 
 하지만 String, Number, Boolean 생성자 함수는 new 연산자와 함께 호출했을 때만 객체를 생성하고 반환하지만 new 연산자 없이 호출하면 문자열, 숫자, 불리언 값을 반환하다. 이를 통해 데이터 타입을 변환하기도 한다.
 
