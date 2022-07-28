@@ -1,14 +1,18 @@
 # 30. Date
 
 **Date** : 날짜 & 시간(연, 월, 일, 시, 분, 초, 밀리초)를 위한 메서드를 제공하는 표준 빌트인 객체 & 생성자 함수
-UTC(= GMT) : 국제 표준시
-KST(한국 표준시) = UTC + 9h(9h 빠름)
+
+- UTC(= GMT) : 국제 표준시
+- KST(한국 표준시) = UTC + 9h(9h 빠름)
+
 현재 날짜 & 시간 - JS 코드가 실행된 시스템의 시계에 의해 결정됨
 ***
 
 ## 30.1 Date 생성자 함수
 
-Date 생성자 함수로 생성한 Date 객체 - 내부적으로 현재 날짜 & 시간을 나타내는 정수값 가짐
+- Date 생성자 함수로 생성한 Date 객체 - 내부적으로 현재 날짜 & 시간을 나타내는 정수값 가짐
+- but 콘솔에 출력하면 기본적으로 날짜 & 시간 정보를 출력함
+
 > **Date 생성자 함수로 객체를 생성하는 방법 4가지**
 >
 > 1. new Date()
@@ -68,6 +72,7 @@ Date 생성자 함수에 연, 월, 일, 시, 분, 초, 밀리초를 의미하는
 
 - 이때 연,월은 반드시 지정해야 함!
 - 지정하지 X 옵션 정보 -> 0 or 1로 초기화됨
+
 | 인수 | 내용 |
 |-----|-----|
 | year | 연을 나타내는 1900년 이후의 정수. 0~99 -> 1900~1999로 처리됨 |
@@ -77,6 +82,7 @@ Date 생성자 함수에 연, 월, 일, 시, 분, 초, 밀리초를 의미하는
 | minute | 분을 나타내는 0~59까지의 정수 |
 | second | 초를 나타내는 0~59까지의 정수 |
 | millisecond | 밀리초를 나타내는 0~999까지의 정수 |
+
 - 연, 월 지정 X -> 1970년 1월 1일 00:00:00(UTC)을 나타내는 Date 객체 반환
 
 ```javascript
@@ -357,6 +363,8 @@ today.toTimeString(); // -> 12:30:00 GMT+0900 (대한민국 표준시)
 
 ISO 8601 형식으로 Date 객체의 날짜 & 시간을 표현한 문자열을 반환
 
+<https://ko.wikipedia.org/wiki/ISO_8601>
+
 ```javascript
 const today = new Date('2020/7/24/12:30');
 
@@ -424,14 +432,14 @@ today.toLocaleString('en-US'); // -> 12:30:00 PM
   let hour = today.getHours();
   let minute = today.getMinutes();
   let second = today.getSeconds();
-  const ampm = hour >= 12 ? 'PM' : 'AM';
+  const ampm = hour >= 12 ? 'PM' : 'AM'; // hour가 12 이상이면 PM, 작으면 AM
   
   // 12시간제로 변경
-  hour %= 12;
-  hour = hour || 12; // hour가 0이면 12를 재할당
+  hour %= 12; // 12로 나눈 나머지
+  hour = hour || 12; // 나머지가 0이면 12를 재할당
   
   // 10 미만인 분 & 초를 2자리로 변경
-  minute = minute < 10 ? '0' + minute : minute;
+  minute = minute < 10 ? '0' + minute : minute; // 10 미만이면 앞에 0을 붙여줌
   second = second < 10 ? '0' + second : second;
   
   const now = `${year}년 ${month}월 ${date}일 ${day} ${hour}:${minute}:${second} ${ampm}`;
