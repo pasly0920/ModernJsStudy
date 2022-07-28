@@ -107,6 +107,41 @@ Person.sayHello();
 
 ## 25.3 클래스 호이스팅
 
+- 클래스는 함수로 평가된다.
+- 클래스 선언문으로 정의한 클래스는 런타임(소스코드 평가 과정) 이전에 먼저 평가되어 객체를 생성한다.
+- 그 객체는 생성자 함수로서 호출할 수 있는 함수 constructor다.
+
+```js
+// 클래스 선언문
+class Person {}
+
+console.log(typeof Person); // function
+```
+
+- <주의>클래스는 클래스 정의 이전에 참조할 수 없다.
+
+```js
+console.log(Person) // ReferenceError: Cannot access 'Person' before initialization
+
+// 클래스 선언문 
+class Person {}
+```
+
+- 클래스는 let, const 키워드로 선언한 변수처럼 호이스팅되기 때문에 클래스 선언문 이전에 일시적 사각지대에 빠지게 된다.
+- 클래스 선언문은 호이스팅(런타임 이전에 먼저 실행되는 것)이 발생하지 않는 것처럼 보이나 그렇지 않다.
+
+```js
+const Person = '';
+
+{
+    // 호이스팅이 발쟁하지 않는다면 ''이 출력되어야 한다.
+    console.log(Person); // ReferenceError: Cannot access 'Person' before initialization
+    
+    // 클래스 선언문
+    class Person {}
+}
+```
+
 ## 25.4 인스턴스 생성
 
 - 일반 함수: new 연산자 없이 호출된다.
