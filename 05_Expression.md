@@ -39,7 +39,7 @@ var sum = 10 + 20; // 30
 |문자 리터럴|'Hello'|
 |불리언 리터럴|true|
 |null 리터럴|null|
-|undefinde 리터럴|undefinde|
+|undefinded 리터럴|undefinded|
 |객체 리터럴|{ name: 'Lee' }|
 |배열 리터럴| [ 1,2,3 ]|
 |함수 리터럴| function() {}|

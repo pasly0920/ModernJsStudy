@@ -6,7 +6,7 @@
 
 표준 빌트인 객체인 Number는 **생성자 함수 객체**다. new 연산자와 함께 호출하여 number 인스턴스를 생성할 수 있다.
 
-Number 생성자 함수에 인수를 전달하지 않고 new 연사자와 함께 호출하면 [[Numberdata]] 내부 슬롯에 0을 할당한 Number 래퍼 객체를 생성한다.
+Number 생성자 함수에 인수를 전달하지 않고 new 연산자와 함께 호출하면 [[Numberdata]] 내부 슬롯에 0을 할당한 Number 래퍼 객체를 생성한다.
 
 ```javascript
 const numObj = new Number();
@@ -173,7 +173,7 @@ Number.isNaN(undefined); // false
 isNaN(undefinded); // true 
 ```
 
-### Number.isSageInteger
+### Number.isSafeInteger
 
 인수로 전달된 숫자값이 안전한 정수인지 검사하여 불리언 값으로 반환한다.
 
