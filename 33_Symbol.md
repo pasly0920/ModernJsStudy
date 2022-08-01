@@ -189,3 +189,32 @@ Array.prototype[Symbol.for('sum')] = function () {
 ### Well-Known Symbol
 
 자바스크립트가 기본 제공하는 빌트인 심벌 값이 있다. 빌트인 심벌 값은 Symbol 함수의 프로퍼티에 할당되어 있다.
+
+브라우저 콘솔에서 Symbol 함수를 참조하면 다양한 심볼들을 확인할 수 있다. 자바스크립트가 기본 제공하는 빌트인 심벌 값을 ECMASCript 사양에서는 Well-Known Symbol 이라 부른다. Well-Known Symbol은 자바스크립트 엔진의 내부 알고리즘에 사용된다.
+
+예를 들어, Array, String, Map, Set, TypedArray, argument, Nodelist, HTMLCollection과 같이 for...of 문으로 순회 가능한 빌트인 이터러블은 Well-Known Symbol인 Symbol.iterator를 키로 같는 메서드를 가지며, Symbol.iterator 메서드를 호출하면 이터레이터를 반환하도록 ECMAScript 사양에 규정되어 있따. 빌트인 티어터르블은 이 규정 **이터레이션 프로토콜**을 준수한다.
+
+만약 빌트인 이터러블이 아닌 일반 객체를 이터러블처럼 동작하도록 구현하고 싶다면 이터레이션 프로토콜을 따르면 된다. 즉, ECMAScript 사양에 규정되어 있는 대로 Well-Known Symbol인 Symbol.iterator를 키로 갖는 메서드를 객체에 추가하고 이터레이터를 반환하도록 구현하면 그 객체는 이터러블이 된다.
+
+```javascript
+// 1 ~ 5 범위의 정수로 이루어진 이터러블
+const iterable = {
+    // Symbol.iterator 메서드를 구현하여 이터러블 프로토콜을 준수
+    [Symbol.iterator]() {
+        let cur = 1;
+        const max = 5;
+        // Symbol.iterator 메서드는 next 메서드를 소유한 이터레이터를 반환
+        return {
+            next() {
+                return { value: cur++, done: cur > max + 1 };
+            }
+        };
+    }
+};
+
+for (const num of iterable) {
+    console.log(num); // 1 2 3 4 5
+}
+```
+
+이처럼 심볼은 중복되지 않는 상수 값을 생성하는 것은 물론 기존에 작성된 코드에 영향을 주지 않고 새로운 프로퍼티를 추가하기 위해, 즉 하위 호환성을 보장하기 위해 도입되었다.
