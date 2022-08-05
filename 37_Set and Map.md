@@ -47,7 +47,7 @@ console.log(set2); // Set(4) {"h", "e", "l", "o"}
 
 ```javascript
 /* 1) filter 메소드를 사용한 배열의 중복 요소 제거
- : unique?array 배열에서 해당 index의 요소값이 첫번째로 나타나는 위치의 index === 현재 index
+ : 인수로 전달받은 배열에서 해당 index의 요소값이 첫번째로 나타나는 위치의 index === 현재 index
       이 조건에 대해 true가 리턴되는 요소만 배열로 리턴함
 */ 
 const uniq = array => array.filter((v, i, self) => self.indexOf(v) === i);
@@ -306,11 +306,11 @@ console.log(a, rest); // 1, [2, 3]
 
 집합 연산을 수행하는 프로토타입 메서드를 구현해보자 !
 
-#### 교집합
+### 교집합
 
 : 집합 A & 집합 B의 공통 요소로 구성됨
 
-#### 방법 1
+#### < 방법 1 >
 
 ```javascript
 Set.prototype.intersection = function (set) {// 함수의 인수로 set 변수를 전달받음
@@ -337,7 +337,7 @@ console.log(setA.intersection(setB)); // Set(2) {2, 4}
 console.log(setB.intersection(setA)); // Set(2) {2, 4}
 ```
 
-#### 방법 2
+#### < 방법 2 >
 
 ```javascript
 Set.prototype.intersection = function (set) {
@@ -357,11 +357,11 @@ console.log(setB.intersection(setA)); // Set(2) {2, 4}
 
 ***
 
-#### 합집합
+### 합집합
 
 - 집합 A & 집합 B의 중복 없는 모든 요소로 구성됨
 
-방법 1
+#### <방법 1 >
 
 ```javascript
 Set.prototype.union = function (set) {
@@ -386,7 +386,7 @@ console.log(setA.union(setB)); // Set(4) {1, 2, 3, 4}
 console.log(setB.union(setA)); // Set(4) {2, 4, 1, 3} 객체에 숫자가 추가된 순서만 다름
 ```
 
-방법 2
+#### <방법 2 >
 
 ```javascript
 Set.prototype.union = function (set) {
@@ -406,11 +406,11 @@ console.log(setB.union(setA)); // Set(4) {2, 4, 1, 3}
 
 ***
 
-#### 차집합
+### 차집합
 
 - 차집합 A - B : 집합 A엔 존재하지만 집합 B에는 존재하지 않는 요소로 구성됨
 
-방법 1
+#### < 방법1 >
 
 ```javascript
 Set.prototype.difference = function (set) {
@@ -434,7 +434,7 @@ console.log(setA.difference(setB)); // Set(2) {1, 3}
 console.log(setB.difference(setA)); // Set(0) {}
 ```
 
-방법 2
+#### < 방법2 >
 
 ```javascript
 Set.prototype.difference = function (set) {
@@ -452,13 +452,13 @@ console.log(setB.difference(setA)); // Set(0) {}
 
 ***
 
-#### 부분 집합 & 상위 집합
+### 부분 집합 & 상위 집합
 
 - 집합 A가 집합 B에 포함되는 경우
 -> 집합 A : 부분 집합 (subset)
 -> 집합 B : 상위 집합 (superset)
 
-방법 1
+#### < 방법 1>
 
 ```javascript
 // this(= isSuperset 메서드를 호출한 Set 객체)가 subset(이 가리키는 Set 객체)의 상위 집합인지 확인한다.
@@ -480,7 +480,7 @@ console.log(setA.isSuperset(setB)); // true -> setA가 setB의 상위 집합임
 console.log(setB.isSuperset(setA)); // false
 ```
 
-방법 2
+#### < 방법 2>
 
 ```javascript
 // this가 subset의 상위 집합인지 확인한다.
@@ -746,10 +746,10 @@ console.log(map); // Map(0) {}
 : Array.prototype.forEach 메서드와 유사하게 콜백 함수 & forEach 메서드의 콜백 함수 내부에서 this로 사용될 객체(옵션)을 인수로 전달함
 
 > 콜백 함수는 3개의 인수 전달받음
-
-- 1번째 인수 : 현재 순회 중인 요소값(value)
-- 2번째 인수 : 현재 순회 중인 요소키(key)
-- 3번째 인수 : 현재 순회 중인 Map 객체 자체
+>
+>- 1번째 인수 : 현재 순회 중인 요소값(value)
+>- 2번째 인수 : 현재 순회 중인 요소키(key)
+>- 3번째 인수 : 현재 순회 중인 Map 객체 자체
 
 ```javascript
 const lee = { name: 'Lee' };
