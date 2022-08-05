@@ -70,6 +70,8 @@ console.log(s1 === s2) // true
 
 Symbol 함수를 사용하면 전역 심벌 레지스트리에서 관리하지 않지만, Symbol.for 메서드를 사용하면 애플리케이션 전역에서 중복되지 않는 유일무이한 상수인 심벌 값을 단 하나만 생성하여 전역 심벌 레지스트리를 통해 공유할 수 있다.
 
+Symbol.keyFor 메서드를 사용하면 전역 심벌 레지스트리에 저장된 심벌 값의 키를 추출할 수 있다.
+
 ```javascript
 // 전역 심벌 레지스트리에 mySymbol이라는 키로 저장된 심벌 값이 없으면 새로운 심벌 값을 생성
 const s1 = Symbol.for('mySymbol');
@@ -192,7 +194,7 @@ Array.prototype[Symbol.for('sum')] = function () {
 
 브라우저 콘솔에서 Symbol 함수를 참조하면 다양한 심볼들을 확인할 수 있다. 자바스크립트가 기본 제공하는 빌트인 심벌 값을 ECMASCript 사양에서는 Well-Known Symbol 이라 부른다. Well-Known Symbol은 자바스크립트 엔진의 내부 알고리즘에 사용된다.
 
-예를 들어, Array, String, Map, Set, TypedArray, argument, Nodelist, HTMLCollection과 같이 for...of 문으로 순회 가능한 빌트인 이터러블은 Well-Known Symbol인 Symbol.iterator를 키로 같는 메서드를 가지며, Symbol.iterator 메서드를 호출하면 이터레이터를 반환하도록 ECMAScript 사양에 규정되어 있따. 빌트인 티어터르블은 이 규정 **이터레이션 프로토콜**을 준수한다.
+예를 들어, Array, String, Map, Set, TypedArray, argument, Nodelist, HTMLCollection과 같이 for...of 문으로 순회 가능한 빌트인 이터러블은 Well-Known Symbol인 Symbol.iterator를 키로 같는 메서드를 가지며, Symbol.iterator 메서드를 호출하면 이터레이터를 반환하도록 ECMAScript 사양에 규정되어 있따. 빌트인 이터러블은 이 규정 **이터레이션 프로토콜**을 준수한다.
 
 만약 빌트인 이터러블이 아닌 일반 객체를 이터러블처럼 동작하도록 구현하고 싶다면 이터레이션 프로토콜을 따르면 된다. 즉, ECMAScript 사양에 규정되어 있는 대로 Well-Known Symbol인 Symbol.iterator를 키로 갖는 메서드를 객체에 추가하고 이터레이터를 반환하도록 구현하면 그 객체는 이터러블이 된다.
 
