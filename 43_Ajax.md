@@ -2,7 +2,7 @@
 
 Ajax란 자바스크립트를 사용하여 브라우저가 서버에게 비동기 방식으로 데이터를 요청하고, 서버가 응답한 데이터를 수신하여 웹페이지를 동적으로 갱신하는 프로그래밍 방식을 말한다.
 
-Ajx는 브라우저에서 제공하는 Web API인 XMLHttpRequest 객체를 기반으로 동작한다. XMLHttpRequest 객체는 HTTP 비동기 통신을 위한 메서드와 프로퍼티를 제공한다.
+Ajax는 브라우저에서 제공하는 Web API인 XMLHttpRequest 객체를 기반으로 동작한다. XMLHttpRequest 객체는 HTTP 비동기 통신을 위한 메서드와 프로퍼티를 제공한다.
 
 이전의 웹 페이즈는 HTML 태그로 시작해서 HTML 태그로 끝나는 완전한 HTML을 서버로부터 전송받아 웹페이지 전체를 처음부터 다시 렌더링하는 방식으로 동작했다. 따라서 화면이 전환되면 서버로부터 새로운 HTML을 전송받아
 웹페이지 전체를 처음부터 다시 렌더링했다. 이러한 전통적인 방식은 다음과 같은 단점이 있다.
@@ -107,7 +107,7 @@ string [
 
 ### JSON.parse
 
-JSON.parse 메서드는 JSON 포맷의 무자열을 객체로 변환한다. 서버로부터 클라이언트에게 전송된 JSON 데이터는 문자열이다. 이 문자열을 객체로서 사용하려면 JSON 포맷의 문자열을 객체화해야하는데 이를 역직렬화(Deserializing)이라 한다.
+JSON.parse 메서드는 JSON 포맷의 문자열을 객체로 변환한다. 서버로부터 클라이언트에게 전송된 JSON 데이터는 문자열이다. 이 문자열을 객체로서 사용하려면 JSON 포맷의 문자열을 객체화해야하는데 이를 역직렬화(Deserializing)이라 한다.
 
 ```javascript
 const obj = {
@@ -238,7 +238,7 @@ xhr.send();
 open 메서드는 서버에 전송할 HTTP 요청을 초기화한다. open 메서드를 호출하는 방법은 다음과 같다.
 
 ```javascript
-xhr.open(method, url[, async]);
+xhr.open(method, url, [async]);
 ```
 
 |매개변수|설명|
@@ -295,7 +295,7 @@ xhr.open('POST', '/users');
 
 // HTTP 요청 헤더 설정
 // 클라이언트가 서버로 전송할 데이터의 MIME 타입 지정: json
-xhr.serRequestHeader('content-type','application/json');
+xhr.setRequestHeader('content-type','application/json');
 
 // HTTP 요청 전송
 xhr.send(JSON.stringify({ id: 1, content: 'HTML', completed: false }));
